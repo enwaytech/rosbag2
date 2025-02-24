@@ -147,8 +147,10 @@ When you have a recorded bag, you can use Rosbag2 to play it back:
 $ ros2 bag play <bag>
 ```
 
-The bag argument can be a directory containing `metadata.yaml` and one or more storage files, or to a single storage file such as `.mcap` or `.db3`.
+The bag argument can be a directory containing `metadata.yaml` and one or more storage files, or
+to a single storage file such as `.mcap` or `.db3`.
 The Player will automatically detect which storage implementation to use for playing.
+A progress bar to track the playback progress will be displayed in the terminal by default.
 
 To play back multiple bags:
 
@@ -156,7 +158,36 @@ To play back multiple bags:
 $ ros2 bag play -i <bag1> -i <bag2> -i <bag3>
 ```
 
-Messages from all provided bags will be played in order, based on their original recording reception timestamps.
+Messages from all provided bags will be played in order, based on their original recording
+reception timestamps.
+
+Options:
+
+* `--topics`:
+  Space-delimited list of topics to play.
+* `--services`:
+  Space-delimited list of services to play.
+* `-e,--regex`:
+  Play only topics and services matches with regular expression.
+* `-x,--exclude-regex`:
+  Regular expressions to exclude topics and services from replay.
+* `--exclude-topics`:
+  Space-delimited list of topics not to play.
+* `--exclude-services`:
+  Space-delimited list of services not to play.
+* `--message-order {received,sent}`:
+  The reference to use for bag message chronological ordering.
+  Choices: reception timestamp (`received`), publication timestamp (`sent`).
+  Default: reception timestamp.
+* `--progress-bar-update-rate [Hz]`:
+  Print a progress bar for the playback with a specified maximum update rate in times per second
+  (Hz). Negative values mark an update for every published message, while a zero value disables
+  the progress bar. Default is 3 Hz.
+* `--progress-bar-separation-lines`:
+  The number of lines to separate the progress bar from the rest of the playback player output.
+  It prevents mixing external log messages with the progress bar string. Default to 2.
+
+For more options, run with `--help`.
 
 #### Controlling playback via services
 

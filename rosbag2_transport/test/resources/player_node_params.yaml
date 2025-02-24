@@ -14,11 +14,11 @@ player_params_node:
       clock_publish_frequency: 19.0
       clock_publish_on_topic_publish: true
       clock_trigger_topics: ["/triggers/clock"]
-      # Negative durations are invalid. 
+      # Negative durations are invalid.
       delay:
         sec: 0
         nsec: 1
-      # Negative timestamps will make the playback to not stop.  
+      # Negative timestamps will make the playback to not stop.
       playback_duration:
         sec: -1
         nsec: 00000000
@@ -28,7 +28,7 @@ player_params_node:
         nsec: -500000000
       start_paused: true
       # Negative durations are invalid.
-      start_offset: 
+      start_offset:
         sec: 0
         nsec: 999999999
       disable_keyboard_controls: true
@@ -39,6 +39,8 @@ player_params_node:
       disable_loan_message: false
       publish_service_requests: false
       service_requests_source: "CLIENT_INTROSPECTION" # SERVICE_INTROSPECTION or CLIENT_INTROSPECTION
+      progress_bar_update_rate: -1  # times per second (Hz)
+      progress_bar_separation_lines: 0
 
     storage:
       uri: "path/to/some_bag"

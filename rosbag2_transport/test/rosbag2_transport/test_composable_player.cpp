@@ -177,6 +177,8 @@ TEST_P(ComposablePlayerTests, player_can_parse_parameters_from_file) {
   EXPECT_EQ(
     play_options.service_requests_source,
     rosbag2_transport::ServiceRequestsSource::CLIENT_INTROSPECTION);
+  EXPECT_EQ(play_options.progress_bar_update_rate, -1);
+  EXPECT_EQ(play_options.progress_bar_separation_lines, 0);
 
   ASSERT_EQ(1, storage_options.size());
   EXPECT_EQ(storage_options[0].uri, uri_str);
